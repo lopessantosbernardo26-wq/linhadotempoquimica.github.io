@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Linha do Tempo Interativa: Átomo</title>
+<style>
+  body {font-family:Arial,sans-serif;margin:20px;background:#f0f8ff;color:#333;}
+  h1 {text-align:center;color:#006;opacity:0;transform:translateY(-30px);animation:titleFade 1.8s forwards;}
+  @keyframes titleFade {to{opacity:1;transform:translateY(0);}}
+
+  .timeline {position:relative;max-width:1200px;margin:40px auto;padding:20px 0;}
+  .timeline::after {content:'';position:absolute;width:6px;background:linear-gradient(#006,#00b);top:0;bottom:0;left:50%;margin-left:-3px;z-index:1;transform:scaleY(0);transform-origin:top;animation:lineDraw 2.5s ease-out forwards 0.5s;}
+  @keyframes lineDraw {to{transform:scaleY(1);}}
+
+  .container {padding:10px 40px;position:relative;width:50%;box-sizing:border-box;opacity:0;transform:translateY(40px);transition:all 1s ease;cursor:pointer;}
+  .container.visible {opacity:1;transform:translateY(0);}
+  .container:hover .content {transform:scale(1.05);box-shadow:0 12px 30px rgba(0,0,0,0.25);}
+
+  .left {left:0;}
+  .right {left:50%;}
+
+  .content {padding:20px 30px;background:white;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,0.15);position:relative;z-index:2;transition:all 0.4s;}
+  .content::after {content:'';position:absolute;top:28px;width:0;height:0;border:12px solid transparent;}
+  .left .content::after  {right:-24px;border-left-color:white;}
+  .right .content::after {left:-24px;border-right-color:white;}
+
+  .year {font-weight:bold;font-size:1.6em;color:#c00;display:block;margin-bottom:8px;}
+
+  .extra {max-height:0;overflow:hidden;transition:max-height 0.7s ease, opacity 0.7s ease;opacity:0;}
+  .container.active .extra {max-height:1200px;opacity:1;}
+
+  .img-container {display:flex;flex-wrap:wrap;gap:12px;margin:12px 0;justify-content:center;}
+  .atom-img {max-width:48%;border-radius:8px;border:1px solid #ccc;opacity:0;transform:scale(0.92);transition:all 0.8s;}
+  .atom-img.loaded {opacity:1;transform:scale(1);}
+
+  .links {margin:12px 0;}
+  a {color:#006;text-decoration:none;font-weight:bold;}
+  a:hover {text-decoration:underline;}
+
+  @media (max-width:768px) {.atom-img {max-width:100%;}}
+  @media (max-width:600px) {
+    .timeline::after {left:31px;}
+    .container {width:100%;left:0;padding:10px 20px 10px 70px;}
+    .content::after {left:-20px;border-right-color:white;border-left:none;}
+  }
+</style>
+</head>
+<body>
+
+<h1>Linha do Tempo Interativa: Evolução do Átomo</h1>
+<p style="text-align:center;color:#555;">Clique nos blocos para expandir</p>
+
+<div class="timeline">
+
+  <div class="container left">
+    <div class="content">
+      <div class="year">~400 a.C. — Demócrito</div>
+      <p>Primeira concepção filosófica do átomo: partículas indivisíveis, eternas, infinitas em número e movendo-se no vazio infinito.</p>
+      <div class="extra">
+        <p>Demócrito e Leucipo propuseram que a realidade é composta apenas por átomos (partículas sólidas e indivisíveis) e o vazio. Os átomos diferem em forma, tamanho, posição e arranjo, e suas combinações explicam todas as coisas visíveis e sensíveis. Não há criação nem destruição, apenas rearranjo eterno de átomos.</p>
+        <div class="img-container">
+          <img class="atom-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Democritus2.jpg/220px-Democritus2.jpg" onload="this.classList.add('loaded')">
+        </div>
+        <div class="links">
+          <a href="https://www.youtube.com/watch?v=9lk-bjnACl8" target="_blank">Vídeo: Demócrito e a teoria atômica</a>
+        </div>
+        <details open><summary>Curiosidades científicas</summary>
+          <ul>
+            <li>Átomos indivisíveis por definição (a-tomos = sem corte).</li>
+            <li>Mudanças = rearranjo de átomos, sem criação ou destruição de matéria.</li>
+            <li>Ideia rejeitada por Aristóteles, que defendeu a matéria contínua por quase dois milênios.</li>
+            <li>Demócrito antecipou conceitos modernos como conservação da matéria e estrutura corpuscular.</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <div class="container right">
+    <div class="content">
+      <div class="year">1803 — John Dalton</div>
+      <p>Teoria atômica moderna: átomo indivisível, maciço, indestrutível e idêntico para cada elemento químico.</p>
+      <div class="extra">
+        <p>Dalton reviveu a ideia atômica com base experimental nas leis ponderais da química: conservação da massa (Lavoisier) e proporções definidas e múltiplas (Proust). Cada elemento é formado por átomos idênticos em massa e propriedades; compostos surgem da combinação fixa de átomos de diferentes elementos.</p>
+        <div class="img-container">
+          <img class="atom-img" src="https://www.compoundchem.com/wp-content/uploads/2016/10/Dalton-Atom-Model.png" onload="this.classList.add('loaded')">
+          <img class="atom-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/John_Dalton_by_Thomas_Phillips.jpg/220px-John_Dalton_by_Thomas_Phillips.jpg" onload="this.classList.add('loaded')">
+        </div>
+        <div class="links">
+          <a href="https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_pt_BR.html" target="_blank">Simulador PHET</a><br>
+          <a href="https://www.youtube.com/watch?v=IFpuOXCaY_o" target="_blank">Vídeo</a>
+        </div>
+        <details open><summary>Curiosidades científicas</summary>
+          <ul>
+            <li>Explicou a lei das proporções múltiplas: razões inteiras simples entre massas.</li>
+            <li>Estabeleceu as primeiras tabelas de massas atômicas relativas (base H=1).</li>
+            <li>Modelo não considerava subpartículas nem isótopos.</li>
+            <li>Dalton era daltônico — condição visual leva seu nome.</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <div class="container left">
+    <div class="content">
+      <div class="year">1897 — J.J. Thomson</div>
+      <p>Descoberta do elétron: átomo divisível. Modelo “pudim de passas”.</p>
+      <div class="extra">
+        <p>Experimentos com tubos de raios catódicos mostraram partículas negativas leves desviadas por campos elétricos e magnéticos. Thomson propôs átomo como esfera de carga positiva uniforme com elétrons negativos embutidos, mantendo neutralidade elétrica.</p>
+        <div class="img-container">
+          <img class="atom-img" src="https://www.compoundchem.com/wp-content/uploads/2016/10/Thomson-Plum-Pudding-Model.png" onload="this.classList.add('loaded')">
+          <img class="atom-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/J_J_Thomson.jpg/220px-J_J_Thomson.jpg" onload="this.classList.add('loaded')">
+        </div>
+        <div class="links">
+          <a href="https://phet.colorado.edu/sims/html/plum-pudding-atom/latest/plum-pudding-atom_en.html" target="_blank">Simulador PHET</a><br>
+          <a href="https://www.youtube.com/watch?v=BQBaN2lAQEQ" target="_blank">Vídeo</a>
+        </div>
+        <details open><summary>Curiosidades científicas</summary>
+          <ul>
+            <li>Mediu a razão carga/massa do elétron (primeira evidência de subpartículas).</li>
+            <li>Modelo explicava neutralidade, mas não espectros nem estabilidade atômica.</li>
+            <li>Chamou elétrons inicialmente de “corpúsculos”.</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <div class="container right">
+    <div class="content">
+      <div class="year">1911 — Ernest Rutherford</div>
+      <p>Descoberta do núcleo: átomo com núcleo denso positivo e quase todo espaço vazio.</p>
+      <div class="extra">
+        <p>Experimento da folha de ouro: partículas alfa disparadas contra fina lâmina de ouro. A maioria atravessou reto, mas poucas desviaram fortemente → núcleo pequeno, denso e positivamente carregado, contendo quase toda a massa atômica.</p>
+        <div class="img-container">
+          <img class="atom-img" src="https://cdn.britannica.com/76/22476-050-4F6B774E/model-Diagram-Rutherford-atom-nucleus-space-electrons.jpg" onload="this.classList.add('loaded')">
+          <img class="atom-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Ernest_Rutherford_LOC_matpc.16001_A.jpg/220px-Ernest_Rutherford_LOC_matpc.16001_A.jpg" onload="this.classList.add('loaded')">
+        </div>
+        <div class="links">
+          <a href="https://phet.colorado.edu/sims/html/rutherford-scattering/latest/rutherford-scattering_pt_BR.html" target="_blank">Simulador PHET</a><br>
+          <a href="https://www.youtube.com/watch?v=AHXD9pgmkPQ" target="_blank">Vídeo</a>
+        </div>
+        <details open><summary>Curiosidades científicas</summary>
+          <ul>
+            <li>Núcleo tem raio ≈ 10⁻¹⁵ m; átomo ≈ 10⁻¹⁰ m (100.000 vezes maior).</li>
+            <li>Modelo clássico instável: elétrons deveriam irradiar energia e colapsar no núcleo.</li>
+            <li>Rutherford comparou o núcleo a uma ervilha no centro de um estádio.</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <div class="container left">
+    <div class="content">
+      <div class="year">1913 — Niels Bohr</div>
+      <p>Modelo de órbitas quantizadas: elétrons em níveis de energia fixos; saltos quânticos.</p>
+      <div class="extra">
+        <p>Bohr postulou que elétrons só ocupam órbitas permitidas com energia quantizada e que saltos entre níveis emitem ou absorvem fótons de energia específica. Explicou perfeitamente o espectro de linhas do hidrogênio.</p>
+        <div class="img-container">
+          <img class="atom-img" src="https://www.compoundchem.com/wp-content/uploads/2016/10/Bohr-Atom-Model.png" onload="this.classList.add('loaded')">
+          <img class="atom-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Niels_Bohr.jpg/220px-Niels_Bohr.jpg" onload="this.classList.add('loaded')">
+        </div>
+        <div class="links">
+          <a href="https://phet.colorado.edu/sims/html/models-of-the-hydrogen-atom/latest/models-of-the-hydrogen-atom_pt_BR.html" target="_blank">Simulador PHET</a><br>
+          <a href="https://www.youtube.com/watch?v=IjkN4rmQtOE" target="_blank">Vídeo</a>
+        </div>
+        <details open><summary>Curiosidades científicas</summary>
+          <ul>
+            <li>Raio da órbita fundamental: 0,529 Å (raio de Bohr).</li>
+            <li>Explicou séries espectrais (Balmer, Lyman, Paschen, Brackett, Pfund).</li>
+            <li>Falha em átomos com mais de um elétron e em campos magnéticos.</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <div class="container right">
+    <div class="content">
+      <div class="year">1926 — Schrödinger / Heisenberg</div>
+      <p>Modelo quântico: elétrons como nuvem de probabilidade (orbitais).</p>
+      <div class="extra">
+        <p>Equação de onda de Schrödinger descreve o elétron como função de onda Ψ; |Ψ|² dá densidade de probabilidade. Princípio da incerteza de Heisenberg limita simultaneamente posição e momento. Sem trajetória definida, apenas regiões de maior probabilidade (orbitais).</p>
+        <div class="img-container">
+          <img class="atom-img" src="https://www.compoundchem.com/wp-content/uploads/2016/10/Schrodinger-Atom-Model.png" onload="this.classList.add('loaded')">
+          <img class="atom-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Erwin_Schrodinger2.jpg/220px-Erwin_Schrodinger2.jpg" onload="this.classList.add('loaded')">
+        </div>
+        <div class="links">
+          <a href="https://phet.colorado.edu/sims/html/models-of-the-hydrogen-atom/latest/models-of-the-hydrogen-atom_pt_BR.html" target="_blank">Simulador PHET</a><br>
+          <a href="https://www.falstad.com/qm/" target="_blank">Falstad</a><br>
+          <a href="https://www.youtube.com/watch?v=rzgE-M4W0fY" target="_blank">Vídeo</a>
+        </div>
+        <details open><summary>Curiosidades científicas</summary>
+          <ul>
+            <li>Incerteza fundamental: Δx · Δp ≥ ħ/2.</li>
+            <li>Orbitais s (esféricos), p (halteres), d, f com formas complexas.</li>
+            <li>Base da ligação química, tabela periódica e tecnologias quânticas.</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const containers = document.querySelectorAll('.container');
+  containers.forEach(cont => {
+    cont.addEventListener('click', () => {
+      cont.classList.toggle('active');
+    });
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, {threshold: 0.2});
+
+  containers.forEach(item => observer.observe(item));
+</script>
+
+</body>
+</html>
